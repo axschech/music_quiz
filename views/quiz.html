@@ -1,0 +1,36 @@
+<div ng-controller="QuizController as qc">
+	<div class="container">
+		<div class="row">
+			<legend class="col-md-4">Artist - {{qc.Artist}}</legend><legend class="col-md-4">Genre - {{Genre}}</legend>
+		</div>
+		<div class="row">
+			<div class="col-md-8">
+			<div ng-if="qc.current < Quiz.number">
+				<h4 class="text-success">Correct: {{qc.right}}</h4>
+				<h4 class="text-danger">Incorrect: {{qc.wrong}}</h4>
+			</div>
+			<div ng-if="qc.current >= Quiz.number">
+				<h4><a ng-href="#" ng-click="qc.reload()">Again?</a></h4>
+			</div>
+				<div ng-repeat="question in Quiz.Questions">
+					<div ng-if="qc.current==$index">
+						<h2>Question {{$index+1}}</h2>
+						<p>{{question.questionString}}</p>
+							<select ng-model='qc.input[$index]' ng-options="answer as answer for answer in question.answers">
+						</select>
+						<br /><br />
+						<button type="button" class="btn btn-sm btn-success" ng-click="qc.choose()">Submit</button>
+					</div>
+				</div>
+				<div ng-if="qc.current >= Quiz.number">
+						<h2>Correct Answers</h2>
+						<p><span class="text-success">Correct</span> | <span class="text-danger">Incorrect</span></p>
+						<div ng-repeat="question in Quiz.Questions">
+								<p>{{question.questionString}}</p>
+								<p ng-class="qc.getClass($index)">{{question.correct}} | {{qc.input[$index]}}</p>
+						</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

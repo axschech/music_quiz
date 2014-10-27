@@ -1,0 +1,21 @@
+
+<div ng-controller="LandingController as lc">
+
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+          <h2>Select an artist</h2>
+          <form role="form" ng-submit="lc.selectArtist()">
+              <div class="form-group">
+                  <input type="text" placeholder="Type an artist's name and press enter" class="form-control" ng-model="lc.Artist" typeahead="artist.name for artist in Artists | filter:$viewValue | limitTo:10" typeahead-on-select="" />
+              </div>
+          </form>
+          
+          
+       </div>
+      </div>
+
+      <hr>
+    </div>
+</div>
